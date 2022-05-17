@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    restart: always
+    platform: linux/amd64
+    build:
+      context: ./
+    volumes:
+      - ./:/app/
+      # Prevents the host node_modules from clobbering the image's
+      - /app/node_modules
+    environment:
+      PORT: 8006
+    ports:
+      - 8006:8006
