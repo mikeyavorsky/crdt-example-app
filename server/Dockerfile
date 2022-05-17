@@ -11,4 +11,4 @@ COPY . .
 
 ENV PORT=8006
 EXPOSE $PORT
-CMD ["sh", "run"]
+CMD ["node", "server/index.js", "2>&1"]
