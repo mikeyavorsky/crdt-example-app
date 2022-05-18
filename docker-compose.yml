@@ -9,7 +9,7 @@ services:
     container_name: server
     hostname: server
     volumes:
-      - ./:/app/
+      - ./:/usr/share/nginx/html/
       # Prevents the host node_modules from clobbering the image's
       - /app/node_modules
     ports:
@@ -21,7 +21,7 @@ services:
       context: ./
       dockerfile: ./client/Dockerfile
     volumes:
-      - ./:/app/
+      - ./:/usr/share/nginx/html/
       # Prevents the host node_modules from clobbering the image's
       - /app/node_modules
     ports:
