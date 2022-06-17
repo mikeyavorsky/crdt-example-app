@@ -1,4 +1,4 @@
-FROM node:16.12.0-buster
+FROM node:lts
 
 WORKDIR /app/
 
@@ -8,6 +8,9 @@ COPY package*.json ./
 RUN npm install --no-optional --quiet 1>/dev/null
 
 COPY . .
+
+RUN apt clean && apt update && apt install -y sqlite3
+# RUN cat server/init.sql | sqlite3 server/db.sqlite
 
 ENV PORT=8006
 EXPOSE $PORT

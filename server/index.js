@@ -5,7 +5,7 @@ let cors = require('cors');
 let { Timestamp } = require('../shared/timestamp');
 let merkle = require('../shared/merkle');
 
-let db = sqlite3(__dirname + '/db.sqlite');
+let db = sqlite3(__dirname + '/db.sqlite', { fileMustExist: true });
 let app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -61,6 +61,7 @@ function getMerkle(group_id) {
 }
 
 function addMessages(groupId, messages) {
+  console.log({ db });
   let trie = getMerkle(groupId);
 
   queryRun('BEGIN');
